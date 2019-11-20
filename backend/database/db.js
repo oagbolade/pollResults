@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 module.exports = {
-  db: 'mongodb://localhost:27017/pollresults'
+  db: process.env.DB_CONFIG || "mongodb://localhost:27017/pollresults"
 };

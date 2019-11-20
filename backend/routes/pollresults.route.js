@@ -75,7 +75,7 @@ router.route("/create-poll").post((req, res, next) => {
   });
   newPoll
     .save()
-    .then(poll => res.json(poll))
+    .then(poll => res.status(200).json({success: "true"}))
     .catch(err => console.log(err));
 });
 
