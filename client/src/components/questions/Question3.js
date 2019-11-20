@@ -19,6 +19,7 @@ class Question3 extends Component {
       partyScore: "",
       partyNameWithID: "",
       error: false,
+      success: false,
       lgas: []
     };
   }
@@ -68,6 +69,7 @@ class Question3 extends Component {
     axios
       .post(URL, pollData)
       .then(res => {
+        this.setState({ success: res.data.success });
         console.log(res.data);
       })
       .catch(err => {
@@ -80,9 +82,20 @@ class Question3 extends Component {
     return (
       <div className="container">
         <Navbar />
-        {this.state.error
-          ? "Your poll data could not be save, please try again later"
-          : ""}
+        {this.state.error ? (
+          <div className="alert alert-danger" role="alert">
+            Your poll data could not be submitted, please try again later
+          </div>
+        ) : (
+          ""
+        )}
+        {this.state.success ? (
+          <div className="alert alert-success" role="alert">
+            Poll submission successfull!
+          </div>
+        ) : (
+          ""
+        )}
         <div className="d-flex justify-content-center align-items-center container">
           <form>
             <div className="form-group">
