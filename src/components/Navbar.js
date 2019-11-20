@@ -4,12 +4,12 @@ import {Link} from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link to={"/"} className="navbar-brand">
         Bincom
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarText"
@@ -17,27 +17,27 @@ function Navbar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+      <div className="collapse navbar-collapse" id="navbarText">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
             <Link to={"/"} className="nav-link">
-              Question1 <span class="sr-only">(current)</span>
+              Question1 <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link to={"/question2"} className="nav-link">
-              Question2 <span class="sr-only">(current)</span>
+              Question2 <span className="sr-only">(current)</span>
             </Link>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <Link to={"/question3"} className="nav-link">
-              Question3 <span class="sr-only">(current)</span>
+              Question3 <span className="sr-only">(current)</span>
             </Link>
           </li>
         </ul>
-        <span class="navbar-text">INEC Polling Results</span>
+        <span className="navbar-text">INEC Polling Results</span>
       </div>
     </nav>
   );
