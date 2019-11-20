@@ -3,6 +3,7 @@ let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
+const path = require("path");
 
 // Express Route
 const pollresults = require('./routes/pollresults.route')
@@ -27,6 +28,9 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 app.use('/pollresults', pollresults)
 
+
+// Render Static React Page
+app.use(express.static(path.join(__dirname, "build")));
 
 // PORT
 const port = process.env.PORT || 4000;
