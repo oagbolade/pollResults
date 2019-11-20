@@ -1,27 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
+import Question1 from "./components/questions/Question1";
+import Question2 from "./components/questions/Question2";
+import Question3 from "./components/questions/Question3";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <button className="btn btn-success">Hello</button>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Question1} />
+          <Route path="/question2" component={Question2} />
+          <Route path="/question3" component={Question3} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
