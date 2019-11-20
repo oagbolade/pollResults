@@ -29,8 +29,12 @@ app.use(cors());
 app.use('/pollresults', pollresults)
 
 
-// Render Static React Page
-app.use(express.static(path.join(__dirname, "build")));
+// Set Static React Page
+app.use(express.static("client/build"));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+})
 
 // PORT
 const port = process.env.PORT || 4000;
