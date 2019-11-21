@@ -27,8 +27,8 @@ class Question2 extends Component {
     axios
       .get(URL)
       .then(res => {
-        this.setState({ polls: res });
-        console.log(res.data);
+        this.setState({ polls: res.data[0].data });
+        //console.log(res.data[0].data);
       })
       .catch(err => {
         console.log(err);
@@ -63,10 +63,14 @@ class Question2 extends Component {
     }
 
     let DataTable = null;
+    let partyScoreArray = [];
+    let partScoreCounter = 0;
 
     if (this.state.polls.length > 0) {
       let counter = 1;
       DataTable = this.state.polls.map(poll => {
+        partyScoreArray.push(Number(poll.party_score));
+        partScoreCounter = partyScoreArray.reduce((a, b) => a + b, 0);
         return (
           <tr key={poll.result_id}>
             <td>{counter++}</td>
@@ -107,7 +111,16 @@ class Question2 extends Component {
                 <th scope="col">Party Score</th>
               </tr>
             </thead>
-            <tbody>{DataTable}</tbody>
+            <tbody>
+              {DataTable}
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <b>Totol: {partScoreCounter}</b>
+                </td>
+              </tr>
+            </tbody>
           </table>
         ) : (
           ""

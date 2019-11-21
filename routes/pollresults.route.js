@@ -30,25 +30,21 @@ let getEachPollResult = (res, next, polling_unit_uniqueid) => {
 
 // Get Single LGA, Question Two
 router.route("/lga/:id").get((req, res, next) => {
-  pollingUnitResults.find({ lga_id: req.params.id }, (error, data) => {
-    if (error) {
-      return error;
-    } else {
-      data.forEach(poll => {
-        //return getEachPollResult(res, next, poll.polling_unit_id);
-        pollresults.find(
-          { polling_unit_uniqueid: poll.polling_unit_id },
-          (error, data) => {
-            if (error) {
-              return next(error);
-            } else {
-              res.json(data);
-            }
-          }
-        );
-      });
-    }
-  });
+  pollingUnitResults
+    .aggregate([
+      {
+        $match: { lga_id: req.params.id }
+      },
+      {
+        $lookup: {
+          from: "announced_pu_results",
+          localField: "polling_unit_id",
+          foreignField: "polling_unit_uniqueid",
+          as: "data"
+        }
+      }
+    ])
+    .then(data => res.json(data));
 });
 
 // Get all lgas, Question Two
@@ -75,7 +71,7 @@ router.route("/create-poll").post((req, res, next) => {
   });
   newPoll
     .save()
-    .then(poll => res.status(200).json({success: "true"}))
+    .then(poll => res.status(200).json({ success: "true" }))
     .catch(err => console.log(err));
 });
 
