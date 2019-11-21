@@ -14,6 +14,7 @@ class Question3 extends Component {
 
     // Setting up state
     this.state = {
+      active: 3,
       enteredBy: "",
       pollingUnitID: "",
       partyScore: "",
@@ -81,7 +82,7 @@ class Question3 extends Component {
   render() {
     return (
       <div className="container">
-        <Navbar />
+        <Navbar active={this.state.active} />
         {this.state.error ? (
           <div className="alert alert-danger" role="alert">
             Your poll data could not be submitted, please try again later

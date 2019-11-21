@@ -11,6 +11,7 @@ class Question1 extends Component {
 
     // Setting up state
     this.state = {
+      active: 1,
       pollingUnitID: "",
       polls: []
     };
@@ -53,7 +54,7 @@ class Question1 extends Component {
 
     return (
       <div className="container">
-        <Navbar />
+        <Navbar active={this.state.active} />
         <div className="d-flex justify-content-center align-items-center container">
           <form>
             <div className="form-group">
